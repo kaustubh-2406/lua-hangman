@@ -1,11 +1,16 @@
 require('src.game')
 
+-- named imports..
+Hangman = require('src.hangman')
+
 key = ''
 description = ''
 highlighted = ''
 
 function love.load()
     math.randomseed(os.time(), os.time())
+
+    WINDOW_WIDTH, WINDOW_HEIGHT = love.graphics.getDimensions()
 
     big = love.graphics.newFont('fonts/Montserrat-Black.ttf', 20)
     normal = love.graphics.newFont('fonts/Montserrat-Regular.ttf', 16)
@@ -74,14 +79,33 @@ function love.draw()
     -- reset to white..
     love.graphics.setColor(1, 1, 1)
 
+    -- show hangman figure..
+    lives = g.get_lives()
+
+    if lives == 0 then
+        Hangman.legs()
+    end
+    if lives <= 1 then
+        Hangman.arms()
+    end
+    if lives <= 2 then
+        Hangman.body()
+    end
+    if lives <= 3 then
+        Hangman.head()
+    end
+    if lives <= 4 then
+        Hangman.clamp()
+    end
+
     -- showing dashes nd text according to game state.
     love.graphics.setFont(normal)
     start, diff_x = 200, 400
     diff = (diff_x / #state)
     for i = 1, #state do
-        love.graphics.print(state:sub(i, i), start - 20 + diff * i, 400)
+        love.graphics.print(state:sub(i, i), start - 20 + diff * i, 450)
     end
 
     -- description
-    love.graphics.printf(description, start, 450, diff_x, 'center')
+    love.graphics.printf(description, start, 480, diff_x, 'center')
 end
