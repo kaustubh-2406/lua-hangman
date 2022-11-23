@@ -22,6 +22,6 @@ Its a classical version of hangman game developed in Lua and Love2d.
 
 ## Builds - 
 
-- **Windows Build** - You can download windows build [here](/builds/hangman-windows.exe?raw=true)
+- **Windows Build** - You can download windows build [here](/builds/hangman-windows.zip)
 
 - Sorry for no builds for Linux and MacOS. But, if you have lua and love2d installed you can download the file [here](https://github.com/kaustubh-2406/lua-hangman/blob/main/builds/hangman.love), to play the game
